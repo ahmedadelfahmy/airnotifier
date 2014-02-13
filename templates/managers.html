@@ -74,6 +74,7 @@
                     <a class="btn btn-danger" href="/admin/managers?delete={{m['_id']}}"><i class="icon-trash icon-white"></i> {{ _('Delete') }}</a>
                     {% else %}
                     <strong>This is you</strong>
+                    <a class="btn btn-primary" href="/admin/managers?delete={{m['_id']}}"><i class="icon-edit icon-white"></i> {{ _('Change password') }}</a>
                     {% end %}
                 </td>
             </tr>

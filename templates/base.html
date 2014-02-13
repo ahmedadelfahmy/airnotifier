@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+    <meta charset="utf-8">
     <title>{{ escape(handler.settings["app_title"]) }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ static_url("bootstrap.css") }}" type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ static_url("favicon.ico") }}" type="image/x-icon">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
     <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
       .sidebar-nav {
         padding: 9px 0;
+      }
+      body {
+            min-height: 2000px;
+      }
+
+      .navbar-static-top {
+            margin-bottom: 19px;
       }
       .online {color:green}
       .offline {color:red}
@@ -25,37 +32,39 @@
     {% block head %}{% end %}
     </head>
     <body>
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <span class="brand">AirNotifier</span>
-          <div class="nav-collapse">
-            {% block navbar %}{% end %}
-            <p class="navbar-text pull-right">
-            {% if current_user %}
-                <a href="/auth/logout?next={{ url_escape(request.uri) }}">{{ _("Sign out") }}</a>
-            {% else %}
-                {{ _('<a href="%(url)s">Sign in</a>') % {"url": "/auth/login?next=" + url_escape(request.uri)} }}
-            {% end %}
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">AirNotifier</a>
+            </div>
+            <div class="nav-collapse">
+                {% block navbar %}{% end %}
+                <ul class="nav navbar-nav navbar-right">
+                    {% if current_user %}
+                    <li><a href="/auth/logout?next={{ url_escape(request.uri) }}">{{ _("Sign out") }}</a></li>
+                    {% else %}
+                    <li>{{ _('<a href="%(url)s">Sign in</a>') % {"url": "/auth/login?next=" + url_escape(request.uri)} }}</li>
+                    {% end %}
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!-- end of container -->
+    </div><!-- end of navbar -->
 
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div><!-- end of header -->
 
     <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
+      <div class="row">
+        <div class="col-md-3">
           <div class="well sidebar-nav">
           {% block sidebaritems %}{% end %}
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="span9">
+        <div class="col-md-9">
         {% block tabbaritems %}{% end %}
         {% block body %}{% end %}
         </div>
@@ -64,8 +73,13 @@
       <hr>
       {% block bottom %}{% end %}
       <footer>
-        <p>&copy; Dongsheng Cai 2012</p>
+        <p>Copyright &copy; 2012-2014, Dongsheng Cai All Rights Reserved</p>
       </footer>
     </div><!--/.fluid-container-->
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
     </body>
 </html>

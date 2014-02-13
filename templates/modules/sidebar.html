@@ -1,10 +1,10 @@
-<ul class="nav nav-list">
-    <li class="nav-header">{{ _('Admin') }}</li>
-    {% if active == 'managers'%}<li class="active">{% else %}<li>{% end %}
-    <a href="/admin/managers"><i class="icon-user"></i> {{ _('Users') }}</a></li>
+<div class="list-group">
+    <h4 class="nav-header">{{ _('Admin') }}</h4>
+    
+    <a class="list-group-item{% if active == 'managers'%} active{% end %}" href="/admin/managers"><i class="icon-user"></i> {{ _('Users') }}</a>
     {% if active == 'createapp'%}<li class="active">{% else %}<li>{% end %}
     <a href="/applications/new"><i class="icon-plus"></i> {{ ('Create application') }}</a></li>
-</ul>
+</div>
 
 <ul class="nav nav-list">
     <li class="nav-header">{{ _('Applications') }}</li>
